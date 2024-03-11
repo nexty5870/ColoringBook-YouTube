@@ -1,0 +1,181 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  scroll-behavior: smooth !important;
+  background-color: white!important;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 500px;
+  background-color: #f1f5f9;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #1e293b66;
+  border-radius: 500px;
+}
+
+/* Handle */
+/* :hover::-webkit-scrollbar-thumb {
+  background: #3E00FA;
+} */
+
+::-webkit-scrollbar-thumb:horizontal:hover,
+::-webkit-scrollbar-thumb:vertical:hover {
+  background: #3e00fa;
+}
+/* It makes the HTML progress bar filling smooth when value change. */
+progress::-webkit-progress-value {
+  transition: 0.6s width ease-out;
+}
+
+@layer base {
+  .btn-gradient {
+    @apply !bg-gradient !bg-[length:300%_300%] hover:saturate-[1.2] shadow duration-100 !border-0 !border-transparent !bg-transparent animate-shimmer disabled:!bg-none disabled:!bg-gray-500/30  !text-white;
+  }
+  .btn {
+    @apply !capitalize;
+  }
+}
+
+.ld-gradient {
+  background: linear-gradient(
+    167deg,
+    rgb(226, 246, 101) 0%,
+    rgb(123, 254, 147) 12%,
+    rgb(72, 240, 183) 30%,
+    rgb(40, 175, 222) 70%,
+    rgb(10, 126, 253) 88%,
+    rgb(0, 112, 244) 100%
+  );
+}
+
+.carousel-left {
+  animation: scrollLeft 8s linear infinite;
+  overflow: visible;
+}
+
+@keyframes scrollLeft {
+  0% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+  100% {
+    -webkit-transform: translateY(calc(-600px));
+    transform: translateY(calc(-600px));
+  }
+}
+
+.carousel-right {
+  animation: scrollRight 8s linear infinite;
+  animation-direction: reverse;
+  overflow: visible;
+}
+
+@keyframes scrollRight {
+  0% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+  100% {
+    -webkit-transform: translateY(calc(-600px));
+    transform: translateY(calc(-600px));
+  }
+}
+
+.carousel-down {
+  animation: scrollDown 8s linear infinite;
+  animation-direction: reverse;
+  overflow: visible;
+}
+
+@keyframes scrollDown {
+  0% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  100% {
+    -webkit-transform: translateX(calc(-600px));
+    transform: translateX(calc(-600px));
+  }
+}
+
+.carousel-up {
+  animation: scrollUp 8s linear infinite;
+  overflow: visible;
+}
+
+@keyframes scrollUp {
+  0% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  100% {
+    -webkit-transform: translateX(calc(-600px));
+    transform: translateX(calc(-600px));
+  }
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+::selection {
+  background-color: #3e00fa;
+  color: white;
+}
+
+@layer utilities {
+      /* Hide scrollbar for Chrome, Safari and Opera */
+      .no-scrollbar::-webkit-scrollbar {
+          display: none;
+      }
+     /* Hide scrollbar for IE, Edge and Firefox */
+      .no-scrollbar {
+          -ms-overflow-style: none;  /* IE and Edge */
+          scrollbar-width: none;  /* Firefox */
+    }
+  }
+
+  strong.underlined {
+    position: relative;
+ }
+  strong.underlined::after {
+    content: '';
+    position: absolute;
+    bottom: -0.125rem;
+    left: -0.5rem;
+    right: -0.5rem;
+    height: 0.75rem;
+    z-index: 1;
+    background-image: url('/assets/docs/underline.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+ }
+  p > strong.underlined {
+    font-weight: 500;
+ }
+  p > strong.underlined::after {
+    bottom: -0.4rem!important;
+    height: 0.5rem!important;
+    left: -0.25rem!important;
+    right: -0.25rem!important;
+ }
+  

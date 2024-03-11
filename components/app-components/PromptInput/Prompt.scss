@@ -1,0 +1,46 @@
+[contenteditable] {
+  outline: 0px solid transparent;
+}
+
+.tiptap p {
+    line-height: 32px;
+  }
+
+.tiptap p.is-editor-empty:first-child::before {
+    content: attr(data-placeholder);
+    float: left;
+    height: 0;
+    pointer-events: none;
+    color: rgba(0, 0, 0, 0.30);
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+  }
+
+  
+span.highlighted-text {
+    border-radius: 8px;
+    border: 1px solid #EBF0F3;
+    background: #FFF;
+    padding: 4px;
+    margin: 4px;
+}
+span.highlighted-text:after{
+    padding-left: 4px;
+    content: "\00d7"; /* This will render the 'X' */
+    width: 16px;
+    opacity: 0.5;
+    cursor: pointer;
+}
+span.highlighted-text.level-1:before {
+    padding-right: 4px;
+    content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%233E00FA'%3E%3Cpath fill='%233E00FA' d='m10.024 5.88-5.25 5.626a.376.376 0 0 1-.641-.328L4.82 7.74 2.118 6.726a.375.375 0 0 1-.14-.61L7.228.493a.375.375 0 0 1 .641.328L7.18 4.26l2.702 1.014a.375.375 0 0 1 .14.607h.002Z'/%3E%3C/svg%3E");
+}
+span.highlighted-text.level-2:before {
+    padding-right: 4px;
+    content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='12' fill='%233E00FA'%3E%3Cpath fill='%233E00FA' d='m10.024 5.88-5.25 5.626a.376.376 0 0 1-.641-.328L4.82 7.74 2.118 6.726a.375.375 0 0 1-.14-.61L7.228.493a.375.375 0 0 1 .641.328L7.18 4.26l2.702 1.014a.375.375 0 0 1 .14.607h.002ZM22.024 5.88l-5.25 5.626a.376.376 0 0 1-.642-.328l.688-3.438-2.702-1.014a.375.375 0 0 1-.14-.61l5.25-5.624a.375.375 0 0 1 .641.328l-.689 3.44 2.702 1.014a.375.375 0 0 1 .14.607h.002Z'/%3E%3C/svg%3E");
+}
+span.highlighted-text.level-3:before {
+    padding-right: 4px;
+    content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='12' fill='%233E00FA'%3E%3Cpath fill='%233E00FA' d='m10.024 5.88-5.25 5.626a.375.375 0 0 1-.641-.328L4.82 7.74 2.118 6.726a.375.375 0 0 1-.14-.61L7.228.493a.375.375 0 0 1 .641.328L7.18 4.26l2.702 1.014a.374.374 0 0 1 .14.607h.002ZM22.024 5.88l-5.25 5.626a.375.375 0 0 1-.642-.328l.688-3.438-2.702-1.014a.375.375 0 0 1-.14-.61l5.25-5.624a.375.375 0 0 1 .641.328l-.689 3.44 2.702 1.014a.375.375 0 0 1 .14.607h.002ZM34.024 5.88l-5.25 5.626a.375.375 0 0 1-.642-.328l.688-3.438-2.702-1.014a.375.375 0 0 1-.14-.61l5.25-5.624a.375.375 0 0 1 .641.328l-.689 3.44 2.702 1.014a.375.375 0 0 1 .14.607h.002Z'/%3E%3C/svg%3E");
+}

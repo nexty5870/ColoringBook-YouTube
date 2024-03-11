@@ -1,0 +1,25 @@
+.loop-slider {
+    .inner {
+      display: flex;
+      width: fit-content;
+      animation: loop 50s linear infinite;
+    }
+  }
+
+
+    .inner-2 {
+        display: flex;
+        width: fit-content;
+        animation: loop 50s linear infinite;
+        animation-direction: reverse; 
+    }
+
+  
+  @keyframes loop {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-1870px);
+    }
+  }

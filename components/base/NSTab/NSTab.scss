@@ -1,0 +1,43 @@
+
+.tabs{
+  font-size:10px;
+  padding:4px;
+  background: #F8FAFC;
+  border-radius:8px;
+  position:relative;
+}
+
+.tabs button{
+  color: #020617;
+  padding: 4px;
+  position:relative;
+  z-index:1;
+  transition-duration:0.6s;
+  height: 24px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.tabs button.active{
+  color:#fff;
+}
+
+.tabs button svg *{
+  fill: #020617;
+}
+
+.tabs button.active svg *{
+  fill: #fff;
+}
+
+.tabs .selector{
+  position:absolute;
+  left:0px;
+  top:4px;
+  z-index:1;
+  border-radius:4px;
+  transition-duration:0.6s;
+  transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  
+  background: #3E00FA;
+}

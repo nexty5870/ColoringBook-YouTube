@@ -1,0 +1,16 @@
+diff --git a/node_modules/@types/fabric/fabric-impl.d.ts b/node_modules/@types/fabric/fabric-impl.d.ts
+index d47a6cb..dfe3476 100644
+--- a/node_modules/@types/fabric/fabric-impl.d.ts
++++ b/node_modules/@types/fabric/fabric-impl.d.ts
+@@ -5786,6 +5786,11 @@ export class PatternBrush extends PencilBrush {
+      */
+     createPath(pathData: string): Path;
+ }
++
++export class EraserBrush extends fabric.BaseBrush {
++    constructor(canvas: Canvas);
++}
++
+ export class PencilBrush extends BaseBrush {
+     /**
+      * Constructor

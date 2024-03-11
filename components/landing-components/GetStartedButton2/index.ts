@@ -1,0 +1,1 @@
+export { default as GetStartedButton2 } from './GetStartedButton2';
