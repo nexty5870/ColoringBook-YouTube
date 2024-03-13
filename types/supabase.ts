@@ -168,34 +168,28 @@ export type Database = {
       }
       users: {
         Row: {
-          active_plan: string | null
           avatar_url: string | null
           created_at: string
           credits: number
           email: string
           full_name: string | null
           id: string
-          is_invited: boolean
         }
         Insert: {
-          active_plan?: string | null
           avatar_url?: string | null
           created_at?: string
           credits?: number
           email: string
           full_name?: string | null
           id: string
-          is_invited?: boolean
         }
         Update: {
-          active_plan?: string | null
           avatar_url?: string | null
           created_at?: string
           credits?: number
           email?: string
           full_name?: string | null
           id?: string
-          is_invited?: boolean
         }
         Relationships: [
           {

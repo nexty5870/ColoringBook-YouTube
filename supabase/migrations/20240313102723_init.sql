@@ -52,17 +52,29 @@ CREATE OR REPLACE FUNCTION "public"."handle_new_user"() RETURNS "trigger"
     LANGUAGE "plpgsql" SECURITY DEFINER
     AS $$
 begin
-  insert into public.users (id, full_name, avatar_url)
-  values (new.id, new.raw_user_meta_data->>'full_name', new.raw_user_meta_data->>'avatar_url');
+  insert into public.users (id, email, full_name, avatar_url)
+  values (new.id, new.email, new.raw_user_meta_data->>'full_name', new.raw_user_meta_data->>'avatar_url');
   return new;
 end;
 $$;
 
 ALTER FUNCTION "public"."handle_new_user"() OWNER TO "postgres";
 
+CREATE TRIGGER on_auth_user_created
+AFTER INSERT ON auth.users
+FOR EACH ROW
+EXECUTE FUNCTION public.handle_new_user();
+
 SET default_tablespace = '';
 
 SET default_table_access_method = "heap";
+
+CREATE TABLE IF NOT EXISTS "public"."leads" (
+    "email" "text" NOT NULL,
+    "created_at" timestamp with time zone DEFAULT "now"() NOT NULL
+);
+
+ALTER TABLE "public"."leads" OWNER TO "postgres";
 
 CREATE TABLE IF NOT EXISTS "public"."lemon_squeezy_customers" (
     "id" "uuid" NOT NULL,
@@ -115,10 +127,14 @@ CREATE TABLE IF NOT EXISTS "public"."users" (
     "full_name" "text",
     "avatar_url" "text",
     "created_at" timestamp with time zone DEFAULT ("now"() AT TIME ZONE 'utc'::"text") NOT NULL,
-    "credits" numeric DEFAULT '0'::numeric NOT NULL
+    "credits" numeric DEFAULT '0'::numeric NOT NULL,
+    "email" "text" NOT NULL
 );
 
 ALTER TABLE "public"."users" OWNER TO "postgres";
+
+ALTER TABLE ONLY "public"."leads"
+    ADD CONSTRAINT "leads_pkey" PRIMARY KEY ("email");
 
 ALTER TABLE ONLY "public"."lemon_squeezy_subscriptions"
     ADD CONSTRAINT "lemon_squeezy_subscriptions_pkey" PRIMARY KEY ("id");
@@ -149,6 +165,10 @@ CREATE POLICY "Can update own user data." ON "public"."users" FOR UPDATE USING (
 
 CREATE POLICY "Can view own user data." ON "public"."users" FOR SELECT USING (("auth"."uid"() = "id"));
 
+CREATE POLICY "Enable insert for authenticated users only" ON "public"."leads" FOR INSERT WITH CHECK (true);
+
+ALTER TABLE "public"."leads" ENABLE ROW LEVEL SECURITY;
+
 ALTER TABLE "public"."lemon_squeezy_customers" ENABLE ROW LEVEL SECURITY;
 
 ALTER TABLE "public"."lemon_squeezy_subscriptions" ENABLE ROW LEVEL SECURITY;
@@ -171,6 +191,10 @@ GRANT ALL ON FUNCTION "public"."add_credits"("x" integer, "user_id" "uuid") TO "
 GRANT ALL ON FUNCTION "public"."handle_new_user"() TO "anon";
 GRANT ALL ON FUNCTION "public"."handle_new_user"() TO "authenticated";
 GRANT ALL ON FUNCTION "public"."handle_new_user"() TO "service_role";
+
+GRANT ALL ON TABLE "public"."leads" TO "anon";
+GRANT ALL ON TABLE "public"."leads" TO "authenticated";
+GRANT ALL ON TABLE "public"."leads" TO "service_role";
 
 GRANT ALL ON TABLE "public"."lemon_squeezy_customers" TO "anon";
 GRANT ALL ON TABLE "public"."lemon_squeezy_customers" TO "authenticated";
