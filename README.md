@@ -19,8 +19,8 @@ A streamlined Next.js application template featuring authentication and a basic 
 
 1. **Clone the repository**
    ```bash
-   git clone [your-repo-url]
-   cd [your-repo-name]
+   git clone https://github.com/nexty5870/coloring-book
+   cd coloring-book
    ```
 
 2. **Install dependencies**
