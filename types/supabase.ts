@@ -24,6 +24,85 @@ export type Database = {
         }
         Relationships: []
       }
+      generations: {
+        Row: {
+          id: string
+          user_id: string
+          prompt: string
+          status: 'pending' | 'completed' | 'failed'
+          image_url: string | null
+          credits_used: number
+          error: string | null
+          created_at: string
+          completed_at: string | null
+        }
+        Insert: {
+          id?: string
+          user_id: string
+          prompt: string
+          status?: 'pending' | 'completed' | 'failed'
+          image_url?: string | null
+          credits_used?: number
+          error?: string | null
+          created_at?: string
+          completed_at?: string | null
+        }
+        Update: {
+          id?: string
+          user_id?: string
+          prompt?: string
+          status?: 'pending' | 'completed' | 'failed'
+          image_url?: string | null
+          credits_used?: number
+          error?: string | null
+          created_at?: string
+          completed_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "generations_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      credit_transactions: {
+        Row: {
+          id: string
+          user_id: string
+          amount: number
+          description: string | null
+          source: string | null
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          user_id: string
+          amount: number
+          description?: string | null
+          source?: string | null
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          user_id?: string
+          amount?: number
+          description?: string | null
+          source?: string | null
+          created_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "credit_transactions_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
       lemon_squeezy_customers: {
         Row: {
           customer_id: number | null
@@ -208,10 +287,18 @@ export type Database = {
     Functions: {
       add_credits: {
         Args: {
-          x: number
           user_id: string
+          credit_amount: number
+          credit_source?: string
         }
-        Returns: undefined
+        Returns: void
+      }
+      use_credits: {
+        Args: {
+          user_id: string
+          credit_amount?: number
+        }
+        Returns: boolean
       }
     }
     Enums: {

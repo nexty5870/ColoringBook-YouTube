@@ -12,6 +12,7 @@ const nextConfig = {
       "pbs.twimg.com",
       "images.unsplash.com",
       "logos-world.net",
+      "replicate.delivery",
     ],
   },
   webpack: (config) => {
