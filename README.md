@@ -31,7 +31,7 @@ Create beautiful coloring book pages with AI. Generate personalized coloring pag
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/colorbook-saas
+   git clone https://github.com/nexty5870/ColoringBook-YouTube
    cd colorbook-saas
    ```
 
