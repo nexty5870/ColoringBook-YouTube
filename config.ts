@@ -3,10 +3,10 @@ import { ConfigProps } from "./types/config";
 
 const config = {
   // REQUIRED
-  appName: "NextStarterAI",
+  appName: "ColorBook SaaS",
   // REQUIRED: a short description of your app for SEO tags (can be overwritten)
   appDescription:
-    "NextStarterAI: All in one development kit for your next project. Next.js, Tailwind CSS, Supabase, Stripe, Lemon Squeezy, and more.",
+    "Create beautiful coloring book pages with AI. Generate personalized coloring pages for yourself and your kids with our AI-powered platform.",
   // REQUIRED (no https://, not trialing slash at the end, just the naked domain)
   domainName: "nextstarter.ai",
   crisp: {
