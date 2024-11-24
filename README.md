@@ -2,7 +2,7 @@
 
 Create beautiful coloring book pages with AI. Generate personalized coloring pages for yourself and your kids with our AI-powered platform.
 
-[![ColorBook SaaS Demo](https://img.youtube.com/vi/qsRNpR5uPUM/0.jpg)](https://www.youtube.com/watch?v=qsRNpR5uPUM)
+[![ColorBook SaaS Demo](https://img.youtube.com/vi/ovKlVaGnieE/0.jpg)](https://www.youtube.com/watch?v=ovKlVaGnieE)
 
 ## Features
 
