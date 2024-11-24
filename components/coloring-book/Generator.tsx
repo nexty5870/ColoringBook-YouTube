@@ -52,7 +52,7 @@ export function ColoringBookGenerator() {
       }
 
       const data = await response.json();
-      setImage(data.output[0]);
+      setImage(data.imageUrl);
       
       // Add a small delay to allow the database to update
       await new Promise(resolve => setTimeout(resolve, 1000));
@@ -102,53 +102,55 @@ export function ColoringBookGenerator() {
 
   return (
     <Card className="p-6 space-y-4">
-      <div className="space-y-4">
-        <div className="flex justify-between items-center">
-          <h2 className="text-2xl font-bold">Generate Coloring Book</h2>
-        </div>
-
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <textarea
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label htmlFor="prompt" className="block text-sm font-medium mb-2">
+            Enter your prompt
+          </label>
+          <input
+            id="prompt"
+            type="text"
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
-            placeholder="Enter your prompt here..."
+            placeholder="e.g., a magical unicorn in a forest"
             className="w-full p-2 border rounded-md"
-            rows={4}
             disabled={loading}
           />
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {loading ? (
-              <span className="flex items-center justify-center">
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Generating...
-              </span>
-            ) : (
-              "Generate Image"
-            )}
-          </button>
-        </form>
+        </div>
+        <button
+          type="submit"
+          className="w-full h-10 text-base font-medium text-white bg-primary hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center rounded-lg"
+          disabled={loading || !prompt}
+        >
+          {loading ? (
+            <>
+              <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+              Generating...
+            </>
+          ) : (
+            "Generate Image"
+          )}
+        </button>
+      </form>
 
-        {image && (
-          <div className="relative aspect-square w-full">
+      {image && (
+        <div className="space-y-4">
+          <div className="relative aspect-square">
             <Image
               src={image}
               alt="Generated coloring book image"
               fill
               className="object-contain"
             />
-            <button
-              onClick={handleDownload}
-              className="absolute bottom-4 right-4 bg-white text-black px-4 py-2 rounded-md shadow-md hover:bg-gray-100"
-            >
-              Download
-            </button>
           </div>
-        )}
-      </div>
+          <button
+            onClick={handleDownload}
+            className="w-full bg-green-600 text-white h-10 py-2 rounded-lg hover:bg-green-700"
+          >
+            Download Image
+          </button>
+        </div>
+      )}
     </Card>
   );
 }

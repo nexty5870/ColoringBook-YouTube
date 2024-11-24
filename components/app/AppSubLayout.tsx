@@ -17,29 +17,18 @@ interface AppSubLayoutProps {
 const AppSubLayout: FC<AppSubLayoutProps> = ({ children }) => {
   const { isDarkMode } = useContext(DarkModeContext);
 
-  // useEffect(() => {
-  //   console.log("IS DARK MODE IN SUB: ", isDarkMode)
-  // }, [isDarkMode])
-
-  console.log("IS DARK MODE IN SUB: ", isDarkMode)
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
+  }, [isDarkMode]);
 
   return (
-    <html
-      lang="en"
-      data-theme={isDarkMode ? "dark" : "light"}
-      className={cx(font.className, "h-[100%]")}
-    >
-      {config.domainName && (
-        <head>
-          <PlausibleProvider domain={config.domainName} />
-        </head>
-      )}
+    <div className={cx(font.className, "h-[100%]")}>
+      {config.domainName && <PlausibleProvider domain={config.domainName} />}
       <GTMProvider />
-      <body className="h-[100%]">
-        {/* ClientLayout contains all the client wrappers (Crisp chat support, toast messages, tooltips, etc.) */}
+      <div className="h-[100%]">
         <ClientLayout>{children}</ClientLayout>
-      </body>
-    </html>
+      </div>
+    </div>
   );
 };
 
