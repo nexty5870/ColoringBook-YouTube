@@ -44,7 +44,7 @@ Create beautiful coloring book pages with AI. Generate personalized coloring pag
 
 3. **Environment Setup**
    
-   Create a `.env.local` file:
+   Rename the file `.env.example` to .env
    ```env
    # Supabase Configuration
    NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
